@@ -1,51 +1,12 @@
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Thanks again! Now go create something AMAZING! :D
--->
+<div align="center">
 
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
-
-<!-- PROJECT LOGO -->
-<br />
-<p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Better internet speed measurement</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    Follow this guide if you would like to get more precise information about your internet speed.
   </p>
-</p>
+
+</div>
 
 
 
@@ -62,16 +23,12 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
+        <li><a href="#warning-about-data-usage">Warning about data usage</a></li>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#resources">Resources</a></li>
   </ol>
 </details>
 
@@ -80,135 +37,192 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+I had problem with my internet connectivity especially with the speed which was far away from the speed for which I was paying for. I just wanted to have more professional measurements of my internet connection, so my network operator could not reject my complaints so easily.  
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+Key aspects of testing:
+* testing will be done on dedicated testing device, which will have this as only task
+* testing device will have fully updated operation system right before doing tests 
+* measurement will be done each 5 minutes
+* testing device will be connected to the broadband router by ethernet cable through gigabit port on the tested device
+* testing device will be the only one device connected to the broadband router by ethernet cable
+* wifi will be turned off on the broadband router
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have have contributed to expanding this template!
+With this setup the internet provider cant say that slow speed could be caused by:
+* low wifi speed in the house (distance, interference)
+* other devices consuming bandwidth
 
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
+* [Raspberry Pi 4 B](https://www.raspberrypi.org/)
+* Raspberry Pi OS Lite 32 bit without desktop environment
+* [speedtest](https://www.speedtest.net/apps/cli)
+* [nmap](https://nmap.org/)
+* Python programming language
 
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+### Warning about data usage
+
+Please be aware that this measurement will use a lot of data. Be careful If you have metered data plan. Just one measurement with 20mbit/s connection will use approx. 30MB just for download and approx. 4MB for upload. One measurement each 5 minutes. Do your math.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+* fully built raspberry pi - there is a lot of options how you can build your Raspberry. You can choose nice case or go completely without the case. You can choose 2GB, 4GB or 8GB RAM version. Same applies for the size of sd card. Choose whatever suits you the best. As long as the base is Raspberry Pi 4B then you are golden. Don't forget about power adapter.
+* sd card reader
+* ethernet cable connected from your broadband router to raspberry
+* make sure that no other devices are connected to your router except raspberry during measurement -> I did this by turning off the wifi on the broadband router and disconnected all other ethernet cables connected to it -> **BE REALLY SURE THAT YOU KNOW YOU ARE DOING** - for example - your home security cameras will be offline so your home could be unprotected or there could be other use-cases when some devices are essential to be connected to the internet.   
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
+1. Download [Raspberry Pi Imager](https://www.raspberrypi.org/software/) and open it
+2. For the operating system choose Raspberry Pi OS Lite - Debian port with no desktop environment -> it is in Raspberry Pi Os (other) section
+3. Choose the SD card and hit the Write button
+4. Turn on the raspberry & login with these credentials:
+```shell
+raspberrypi login: pi 
+Password: raspberry
+```
+5. We will do some configuration on our raspberry - we will enable SSH access so we could connect to raspberry from other computer (easier for copy & paste of the commands) and also we will set correct timezone:
+```shell
+sudo raspi-config
+
+-> Select Interfacing Options
+-> Navigate to and select SSH
+-> Choose Yes
+-> Select Ok
+
+-> Select Localisation Options
+-> Navigate to and select Timezone
+-> Choose your geographic area
+-> Choose the city of your timezone
+-> Choose Finish (use right arrow)
+```
+
+6. Check IP adress of your raspberry & make a note of it - it should be something like 192.168.0.15
+```shell
+hostname -I
+```
+
+7. Connect to raspberry from your computer - please choose appropriate tutorial and then all following commands write into the newly opened session
+
+* [Linux & Mac OS](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md)
+* [Windows 10](https://www.raspberrypi.org/documentation/remote-access/ssh/windows10.md) 
+* [Windows](https://www.raspberrypi.org/documentation/remote-access/ssh/windows.md) 
+
+8. Install speedtest and nmap
+
+```shell
+sudo apt-get install gnupg1 apt-transport-https dirmngr
+export INSTALL_KEY=379CE192D401AB61
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $INSTALL_KEY
+echo "deb https://ookla.bintray.com/debian generic main" | sudo tee  /etc/apt/sources.list.d/speedtest.list
+sudo apt-get update
+sudo apt-get install speedtest nmap
+```
+
+9. Run speedtest manually for the first time and on license question answer 2 times YES
+
+```shell
+speedtest
+```
+
+10. Next we will open the file for our script
+
+```
+cd ~
+sudo nano speedtest.py
+```
+
+11. This code will take care of calling speedtest and nmap and write results into the file - please replace 192.168.0.* with your network prefix:
+
+```shell
+import os
+import re
+import subprocess
+import time
+
+response = subprocess.Popen('speedtest -f csv', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
+
+hosts_count_response = subprocess.Popen('sudo nmap -sP -PR 192.168.0.*', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
+hosts_count = re.findall('(\d+) hosts up', hosts_count_response, re.MULTILINE)
+hosts_count = hosts_count[0]
 
 
+try:
+    f = open('/home/pi/speedtest.csv', 'a+')
+    if os.stat('/home/pi/speedtest.csv').st_size == 0:
+            f.write('"Date","Time","Server name","Server id","Latency (ms)","Jitter (ms)","Packet loss %","Download (B/s)","Upload (B/s)","Downloaded Bytes","Uploaded Bytes","Share url","Hosts on network"\r\n')
+except:
+    pass
 
-<!-- USAGE EXAMPLES -->
-## Usage
+f.write('"{}","{}",{},"{}"\r\n'.format(time.strftime('%d.%m.%y'), time.strftime('%H:%M'), response, hosts_count))
+```
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+12. Try to check if script works by calling it and waiting for a moment for showing the results from newly created csv file:
+```shell
+python3 /home/pi/speedtest.py && cat /home/pi/speedtest.csv
+```
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+13. Check if there is last value `Hosts on network` showing exactly 2 (your raspberry + router itself):
+```shell
+cat /home/pi/speedtest.csv
+```
+
+14a. If there is 0 for your `Hosts on network` then you have your network prefix wrong, try to alter network prefix on this command until you get satisfying result and then change prefix used in script with correct one mentioned in step 11. (you will trigger editing the script by repeating the step 10.) 
+
+```shell
+sudo nmap -sP -PR 192.168.0.*
+```
+
+14b. If there is more than 2 it means there are other devices except your broadband router and raspberry. I think that having only testing device and broadband router is essential in case you want to complain to your internet provider. Ideally try to lower this number as much as possible as was mentioned in `Prerequisites` section.
+
+15. If something was outputted from that file, we are ready to call this command periodically. We will use the cron to do this. Start editing crontab with this command:
+
+```shell
+crontab -e
+-> hit enter on editor choose question - easiest editor to use will be used
+```
+
+16. Put this into editor at the end of the file and then save and exit the editor: 
+
+```shell
+*/5 * * * * python3 /home/pi/speedtest.py
+```
+
+17. Wait for few minutes and then make sure that new results are added to the end of file:
+```shell
+cat /home/pi/speedtest/speedtest.csv
+```
+
+18. Your can leave your raspberry doing this measurement for as long as you need - I recommend at least leave it to measure at least 24 hours straight. Exit ssh session:
+```shell
+exit
+```
+
+19. Copy results to your computer after desired period of time - change `ip-address` with your raspberry IP address and `~/Desktop` to your desired path on your computer:
+```shell
+scp pi@ip-address:/home/pi/speedtest/speedtest.csv ~/Desktop
+-> use the same password as you used in first steps of this tutorial
+```
+
+20. Turn off periodic measurement by connecting to raspberry and open cron table:
+```shell
+ssh pi@ip-address
+-> use the same password as you used in first steps of this tutorial
+
+crontab -e
+-> and comment out previously created record so it will look like this:
+
+#*/5 * * * * python3 /home/pi/speedtest.py
+-> save and exit
+```
 
 
+## Other resources
+* [Internet speed in your browser](https://www.yournetspeed.com/)
 
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Pages](https://pages.github.com)
-* [Animate.css](https://daneden.github.io/animate.css)
-* [Loaders.css](https://connoratherton.com/loaders)
-* [Slick Carousel](https://kenwheeler.github.io/slick)
-* [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-* [Sticky Kit](http://leafo.net/sticky-kit)
-* [JVectorMap](http://jvectormap.com)
-* [Font Awesome](https://fontawesome.com)
-
-
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
