@@ -145,7 +145,7 @@ import re
 import subprocess
 import time
 
-response = subprocess.Popen('speedtest -f csv', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
+response = subprocess.Popen('speedtest -f csv', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8').strip()
 
 hosts_count_response = subprocess.Popen('sudo nmap -sP -PR 192.168.0.*', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
 hosts_count = re.findall('(\d+) hosts up', hosts_count_response, re.MULTILINE)
