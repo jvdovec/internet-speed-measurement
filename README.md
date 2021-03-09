@@ -37,18 +37,17 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-I had problem with my internet connectivity especially with the speed which was far away from the speed for which I was paying for. I just wanted to have more professional measurements of my internet connection, so my network operator could not reject my complaints so easily.  
+I had a problem with my internet connectivity, especially with speed, which was far away from the speed I was paying for. I just wanted to have more professional measurements of my internet connection, so my network operator could not easily reject my complaints.  
 
 Key aspects of testing:
-* testing will be done on dedicated testing device, which will have this as only task
-* testing device will have fully updated operation system right before doing tests 
-* measurement will be done each 5 minutes
-* testing device will be connected to the broadband router by ethernet cable through gigabit port on the tested device
-* testing device will be the only one device connected to the broadband router by ethernet cable
-* wifi will be turned off on the broadband router
+* raspberry will do testing, and it will do only this task
+* raspberry will have a fully updated operation system right before doing tests
+* raspberry will do testing each 5 minutes
+* raspberry will connect to the broadband router by ethernet cable utilizing its gigabit network port
+* raspberry will be the only device connected to the broadband router by ethernet cable
+* the broadband router will have wifi turned off
 
-
-With this setup the internet provider cant say that slow speed could be caused by:
+With this setup, the internet provider can not say that slow speed could be caused by:
 * low wifi speed in the house (distance, interference)
 * other devices consuming bandwidth
 
@@ -56,7 +55,7 @@ With this setup the internet provider cant say that slow speed could be caused b
 ### Built With
 
 * [Raspberry Pi 4 B](https://www.raspberrypi.org/)
-* Raspberry Pi OS Lite 32 bit without desktop environment
+* Raspberry Pi OS Lite 32 bit without a desktop environment
 * [speedtest](https://www.speedtest.net/apps/cli)
 * [nmap](https://nmap.org/)
 * Python programming language
@@ -68,26 +67,26 @@ With this setup the internet provider cant say that slow speed could be caused b
 
 ### Warning about data usage
 
-Please be aware that this measurement will use a lot of data. Be careful If you have metered data plan. Just one measurement with 20mbit/s connection will use approx. 30MB just for download and approx. 4MB for upload. One measurement each 5 minutes. Do your math.
+Please be aware that this measurement will use a lot of data. Be careful If you have metered data plan. Just one measurement with a 20mbit/s connection will use approx. 30MB just for download and approx. 4MB for upload. One measurement every 5 minutes. Do your math.
 
 ### Prerequisites
 
-* fully built raspberry pi - there is a lot of options how you can build your Raspberry. You can choose nice case or go completely without the case. You can choose 2GB, 4GB or 8GB RAM version. Same applies for the size of sd card. Choose whatever suits you the best. As long as the base is Raspberry Pi 4B then you are golden. Don't forget about power adapter.
+* fully built raspberry pi - there is a lot of options on how you can build your raspberry. You can choose a nice case or go entirely without the case. Pick a 2GB, 4GB, or 8GB RAM version. The same applies to the size of sd card. Choose whatever suits you the best. As long as the base is Raspberry Pi 4B, then you are golden. Don't forget about the power adapter.
 * sd card reader
 * ethernet cable connected from your broadband router to raspberry
-* make sure that no other devices are connected to your router except raspberry during measurement -> I did this by turning off the wifi on the broadband router and disconnected all other ethernet cables connected to it -> **BE REALLY SURE THAT YOU KNOW YOU ARE DOING** - for example - your home security cameras will be offline so your home could be unprotected or there could be other use-cases when some devices are essential to be connected to the internet.   
+* make sure that no other devices are connected to your router except raspberry during measurement. I did this by turning off the wifi on the broadband router and disconnected all other ethernet cables connected to it.  **BE SURE THAT YOU KNOW YOU ARE DOING!** Your home security cameras will be offline, so your home could be unprotected, or there could be other use-cases when some devices are essential to be connected to the internet.   
 
 ### Installation
 
 1. Download [Raspberry Pi Imager](https://www.raspberrypi.org/software/) and open it
-2. For the operating system choose Raspberry Pi OS Lite - Debian port with no desktop environment -> it is in Raspberry Pi Os (other) section
+2. For the operating system, choose Raspberry Pi OS Lite - Debian port with no desktop environment -> it is in Raspberry Pi Os (other) section
 3. Choose the SD card and hit the Write button
 4. Turn on the raspberry & login with these credentials:
 ```shell
 raspberrypi login: pi 
 Password: raspberry
 ```
-5. We will do some configuration on our raspberry - we will enable SSH access so we could connect to raspberry from other computer (easier for copy & paste of the commands) and also we will set correct timezone:
+5. We will do some configuration on our raspberry - we will enable SSH access so we could connect to raspberry from another computer (easier for copy & paste of the commands), and also we will set the correct timezone:
 ```shell
 sudo raspi-config
 
@@ -103,12 +102,12 @@ sudo raspi-config
 -> Choose Finish (use right arrow)
 ```
 
-6. Check IP adress of your raspberry & make a note of it - it should be something like 192.168.0.15
+6. Check the IP address of your raspberry & make a note of it - it should be something like 192.168.0.15
 ```shell
 hostname -I
 ```
 
-7. Connect to raspberry from your computer - please choose appropriate tutorial and then all following commands write into the newly opened session
+7. Connect to raspberry from your computer - please choose the appropriate tutorial, and then all following commands write into the newly opened session
 
 * [Linux & Mac OS](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md)
 * [Windows 10](https://www.raspberrypi.org/documentation/remote-access/ssh/windows10.md) 
@@ -131,7 +130,7 @@ sudo apt-get install speedtest nmap
 speedtest
 ```
 
-10. Next we will open the file for our script
+10. Next, we will open the file for our script
 
 ```
 cd ~
@@ -173,13 +172,13 @@ python3 /home/pi/speedtest.py && cat /home/pi/speedtest.csv
 cat /home/pi/speedtest.csv
 ```
 
-14a. If there is 0 for your `Hosts on network` then you have your network prefix wrong, try to alter network prefix on this command until you get satisfying result and then change prefix used in script with correct one mentioned in step 11. (you will trigger editing the script by repeating the step 10.) 
+14a. If there is 0 in `Hosts on network` column, you have your network prefix wrong. Try to alter the network prefix on this command until you get a satisfying result and then change the prefix used in the script with the correct one mentioned in step 11. (you will trigger editing the script by repeating step 10.) 
 
 ```shell
 sudo nmap -sP -PR 192.168.0.*
 ```
 
-14b. If there is more than 2 it means there are other devices except your broadband router and raspberry. I think that having only testing device and broadband router is essential in case you want to complain to your internet provider. Ideally try to lower this number as much as possible as was mentioned in `Prerequisites` section.
+14b. If there are more than 2 devices, there are other devices except for your broadband router and raspberry. Having only a testing device and the broadband router is essential if you want to complain to your internet provider. Ideally, try to lower this number as much as possible, as was mentioned in the `Prerequisites` section.
 
 15. If something was outputted from that file, we are ready to call this command periodically. We will use the cron to do this. Start editing crontab with this command:
 
@@ -188,35 +187,35 @@ crontab -e
 -> hit enter on editor choose question - easiest editor to use will be used
 ```
 
-16. Put this into editor at the end of the file and then save and exit the editor: 
+16. Put this into the editor at the end of the file and then save and exit the editor: 
 
 ```shell
 */5 * * * * python3 /home/pi/speedtest.py
 ```
 
-17. Wait for few minutes and then make sure that new results are added to the end of file:
+17. Wait for few minutes and then make sure that the script added new results to the end of the file:
 ```shell
 cat /home/pi/speedtest/speedtest.csv
 ```
 
-18. Your can leave your raspberry doing this measurement for as long as you need - I recommend at least leave it to measure at least 24 hours straight. Exit ssh session:
+18. You can leave your raspberry doing this measurement for as long as you need - I recommend leaving it to measure at least 24 hours straight. Exit ssh session:
 ```shell
 exit
 ```
 
-19. Copy results to your computer after desired period of time - change `ip-address` with your raspberry IP address and `~/Desktop` to your desired path on your computer:
+19. Copy results to your computer after desired time - change `ip-address` with your raspberry IP address and `~/Desktop` to your chosen path on your computer:
 ```shell
 scp pi@ip-address:/home/pi/speedtest/speedtest.csv ~/Desktop
--> use the same password as you used in first steps of this tutorial
+-> use the same password as you used in the first steps of this tutorial
 ```
 
 20. Turn off periodic measurement by connecting to raspberry and open cron table:
 ```shell
 ssh pi@ip-address
--> use the same password as you used in first steps of this tutorial
+-> use the same password as you used in the first steps of this tutorial
 
 crontab -e
--> and comment out previously created record so it will look like this:
+-> and comment out a previously created record so it will look like this:
 
 #*/5 * * * * python3 /home/pi/speedtest.py
 -> save and exit
