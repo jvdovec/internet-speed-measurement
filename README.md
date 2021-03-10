@@ -28,7 +28,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#resources">Resources</a></li>
+    <li><a href="#other-resources">Other resources</a></li>
   </ol>
 </details>
 
