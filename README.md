@@ -130,6 +130,12 @@ sudo apt-get install speedtest nmap
 speedtest
 ```
 
+9b. OPTIONAL - use the following command to list all available test servers near you and make a note of the id of your chosen one. Ideally, choose your operator's server if available.
+```shell
+speedtest --servers
+```
+
+
 10. Next, we will open the file for our script
 
 ```
@@ -137,7 +143,7 @@ cd ~
 sudo nano speedtest.py
 ```
 
-11. This code will take care of calling speedtest and nmap and write results into the file - please replace 192.168.0.* with your network prefix:
+11. This code will take care of calling speedtest and nmap and write results into the file - please replace `192.168.0.*` with your network prefix and `speedtest --format=csv` with `speedtest --format=csv --server-id=IDfromStep9b` in case you want to do measurements against one selected server (do not forget to replace **IDfromStep9b**) :
 
 ```shell
 import os
@@ -145,7 +151,7 @@ import re
 import subprocess
 import time
 
-response = subprocess.Popen('speedtest -f csv', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8').strip()
+response = subprocess.Popen('speedtest --format=csv', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8').strip()
 
 hosts_count_response = subprocess.Popen('sudo nmap -sP -PR 192.168.0.*', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
 hosts_count = re.findall('(\d+) hosts up', hosts_count_response, re.MULTILINE)
